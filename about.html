@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | LingaLonga Art</title>
+  <meta name="description" content="Meet Nicky and Alyssa — the mother and daughter team behind LingaLonga Art, bespoke wedding decor handcrafted in Mallorca, Spain." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blush: #D4847A; --blush-light: #E8B4AD; --blush-pale: #F5E6E4;
+      --sage: #8FAF8A; --sage-light: #B8CEB5; --sage-pale: #EBF0EA;
+      --cream: #FAF6F1; --cream-dark: #F0E8DF;
+      --charcoal: #3D3530; --charcoal-light: #6B5F5A; --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background-color: var(--cream); color: var(--charcoal); font-weight: 300; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,246,241,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--cream-dark); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--blush); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal-light); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blush); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); }
+
+    .page-header { padding: 10rem 6rem 5rem; background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
+    .page-header::before { content: '🌸'; position: absolute; font-size: 20rem; top: -4rem; right: -4rem; opacity: 0.04; }
+    .page-header .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blush-light); margin-bottom: 1rem; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--cream); }
+    .page-header h1 em { color: var(--blush-light); font-style: italic; }
+    .page-header p { font-size: 0.88rem; color: rgba(250,246,241,0.65); margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+    .story-section { padding: 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .story-image { position: relative; }
+    .story-image-main { width: 100%; aspect-ratio: 3/4; background: var(--blush-pale); display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+    .story-image-accent { position: absolute; bottom: -2rem; right: -2rem; width: 55%; aspect-ratio: 1; background: var(--sage-pale); z-index: -1; }
+    .story-content .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .story-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: var(--charcoal); margin-bottom: 1.5rem; line-height: 1.2; }
+    .story-content h2 em { color: var(--blush); font-style: italic; }
+    .story-content p { font-size: 0.88rem; line-height: 1.9; color: var(--charcoal-light); margin-bottom: 1.25rem; }
+
+    .values-section { background: var(--cream-dark); padding: 6rem; }
+    .values-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+    .values-header .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .values-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: var(--charcoal); }
+    .values-header h2 em { color: var(--blush); font-style: italic; }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .value-card { background: var(--white); padding: 2.5rem 2rem; text-align: center; }
+    .value-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .value-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.75rem; }
+    .value-card p { font-size: 0.8rem; line-height: 1.7; color: var(--charcoal-light); }
+
+    .promise-section { background: var(--blush); padding: 5rem 6rem; text-align: center; }
+    .promise-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--white); margin-bottom: 1rem; }
+    .promise-section p { font-size: 1rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: rgba(255,255,255,0.9); max-width: 650px; margin: 0 auto 2rem; line-height: 1.7; font-size: 1.2rem; }
+    .btn-white { display: inline-block; padding: 0.9rem 2.5rem; background: var(--white); color: var(--blush); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; transition: all 0.3s; }
+    .btn-white:hover { background: var(--charcoal); color: var(--white); }
+
+    footer { background: var(--charcoal); color: var(--cream); padding: 4rem 6rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; color: var(--blush-light); }
+    .footer-brand p { font-size: 0.82rem; line-height: 1.8; color: rgba(250,246,241,0.6); max-width: 260px; }
+    .footer-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500; color: var(--cream); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { font-size: 0.8rem; color: rgba(250,246,241,0.55); text-decoration: none; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--blush-light); }
+    .footer-contact p { font-size: 0.8rem; color: rgba(250,246,241,0.55); margin-bottom: 0.6rem; line-height: 1.6; }
+    .footer-contact a { color: rgba(250,246,241,0.55); text-decoration: none; transition: color 0.3s; }
+    .footer-contact a:hover { color: var(--blush-light); }
+    .footer-bottom { border-top: 1px solid rgba(250,246,241,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.72rem; color: rgba(250,246,241,0.35); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--cream); padding: 1.5rem 2rem; border-bottom: 1px solid var(--cream-dark); gap: 1.25rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .story-section { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      .story-image-accent { display: none; }
+      .values-section { padding: 4rem 1.5rem; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .promise-section { padding: 4rem 1.5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">LingaLonga</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-header">
+    <p class="section-label">Our Story</p>
+    <h1>Made with <em>love</em>, crafted with care</h1>
+    <p>A mother and daughter passion project, bringing bespoke wedding touches to life from our studio in beautiful Mallorca.</p>
+  </div>
+
+  <section class="story-section">
+    <div class="story-image">
+      <div class="story-image-main"><img src="images/gallery-1_png.png" alt="Message in a bottle wedding keepsake by LingaLonga Art" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="story-image-accent"></div>
+    </div>
+    <div class="story-content">
+      <p class="section-label">Who We Are</p>
+      <h2>Nicky & Alyssa — <em>the team behind the magic</em></h2>
+      <p>At LingaLonga Art, we believe that your wedding should be as unique and memorable as your love story. As a mother and daughter team, we pour creativity, care, and a touch of magic into every piece of bespoke wedding decor and personalised signage we craft.</p>
+      <p>What began as a shared passion for capturing special moments has grown into a dedication to helping couples create celebrations infused with personality and beauty. Whether it's an elegant welcome sign, charming table numbers, or a keepsake you'll treasure for years, we work closely with each couple, bringing their dream details to life.</p>
+      <p>From modern elegance to rustic romance, every handmade piece is designed to reflect your style and celebrate your journey together. Based in the heart of Mallorca, we are lucky to be surrounded by some of the most beautiful wedding venues in the world — and that beauty inspires everything we create.</p>
+      <p><em style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blush);">"Our promise: heartfelt artistry, made with love, that adds joy and meaning to your big day."</em></p>
+    </div>
+  </section>
+
+  <section class="values-section">
+    <div class="values-header">
+      <p class="section-label">What We Stand For</p>
+      <h2>The heart of <em>everything we do</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">✋</div>
+        <h3>Handmade Always</h3>
+        <p>Every single piece leaves our hands — never mass produced, never generic. Each item is crafted individually with care and attention.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌸</div>
+        <h3>Truly Bespoke</h3>
+        <p>No two weddings are the same, so no two pieces are either. We tailor every detail to your names, your story, and your style.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💬</div>
+        <h3>Personal Connection</h3>
+        <p>You deal directly with Nicky and Alyssa throughout — no middlemen, no generic emails. Just a genuine, personal service.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💙</div>
+        <h3>Made With Love</h3>
+        <p>We genuinely care about your day. The joy we feel when we see our pieces at a wedding is what drives everything we create.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="promise-section">
+    <h2>Let LingaLonga Art make your day truly unforgettable</h2>
+    <p>"Heartfelt artistry, made with love, that adds joy and meaning to your big day. We are so honoured to be a small part of your love story."</p>
+    <a href="contact.html" class="btn-white">Get In Touch</a>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">LingaLonga Art</a>
+        <p>Personalised wedding decor and signage, handcrafted with love in Mallorca, Spain.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">Welcome Signs</a></li>
+          <li><a href="shop.html">Table Runners</a></li>
+          <li><a href="shop.html">Seating Plans</a></li>
+          <li><a href="shop.html">Wooden Signs</a></li>
+          <li><a href="shop.html">Tambourines</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Get In Touch</h4>
+        <p>📍 Palma, Mallorca<br>Illes Balears, Spain</p>
+        <p>📱 <a href="https://wa.me/34620557076">+34 620 557 076</a></p>
+        <p>✉️ <a href="mailto:lingalongamallorca@gmail.com">lingalongamallorca@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LingaLonga Art. All rights reserved.</p>
+      <p>Handcrafted with love 🌸</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+</body>
+</html>

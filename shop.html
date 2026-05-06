@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | LingaLonga Art</title>
+  <meta name="description" content="Shop bespoke handmade wedding decor and signage. Personalised with love in Mallorca, Spain." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blush: #D4847A; --blush-light: #E8B4AD; --blush-pale: #F5E6E4;
+      --sage: #8FAF8A; --sage-light: #B8CEB5; --sage-pale: #EBF0EA;
+      --cream: #FAF6F1; --cream-dark: #F0E8DF;
+      --charcoal: #3D3530; --charcoal-light: #6B5F5A; --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background-color: var(--cream); color: var(--charcoal); font-weight: 300; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,246,241,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--cream-dark); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--blush); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal-light); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blush); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); }
+
+    .page-header { padding: 10rem 6rem 4rem; background: var(--cream-dark); text-align: center; }
+    .page-header .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--charcoal); }
+    .page-header h1 em { color: var(--blush); font-style: italic; }
+    .page-header p { font-size: 0.88rem; color: var(--charcoal-light); margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+    .shop-notice { background: var(--sage-pale); border-left: 3px solid var(--sage); padding: 1.25rem 6rem; font-size: 0.82rem; color: var(--charcoal-light); line-height: 1.7; }
+    .shop-notice strong { color: var(--charcoal); font-weight: 400; }
+
+    .shop-section { padding: 4rem 6rem; }
+    .shop-section + .shop-section { border-top: 1px solid var(--cream-dark); }
+
+    .category-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .category-title em { color: var(--blush); font-style: italic; }
+    .category-desc { font-size: 0.82rem; color: var(--charcoal-light); margin-bottom: 2.5rem; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    .product-card { background: var(--white); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,53,48,0.1); }
+
+    .product-image { aspect-ratio: 4/3; background: var(--blush-pale); display: flex; align-items: center; justify-content: center; font-size: 4rem; overflow: hidden; position: relative; }
+    .product-image.sage-bg { background: var(--sage-pale); }
+    .product-image.cream-bg { background: var(--cream-dark); }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--blush); color: var(--white); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.75rem; }
+
+    .product-body { padding: 1.5rem; }
+    .product-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.4rem; }
+    .product-body p { font-size: 0.8rem; line-height: 1.7; color: var(--charcoal-light); margin-bottom: 1rem; }
+
+    .product-details { display: flex; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .product-detail-tag { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); background: var(--sage-pale); padding: 0.25rem 0.75rem; }
+
+    .product-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--cream-dark); }
+    .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--blush); }
+    .product-price small { font-family: 'Jost', sans-serif; font-size: 0.7rem; color: var(--charcoal-light); display: block; }
+
+    /* PayPal button wrapper */
+    .paypal-wrapper { display: flex; flex-direction: column; gap: 0.5rem; min-width: 140px; }
+    .btn-enquire { display: inline-block; padding: 0.6rem 1.2rem; background: transparent; color: var(--blush); font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--blush); cursor: pointer; text-decoration: none; text-align: center; transition: all 0.3s; }
+    .btn-enquire:hover { background: var(--blush); color: var(--white); }
+
+    /* PayPal buy now button placeholder */
+    .paypal-btn-placeholder { background: #FFC439; color: #003087; border: none; padding: 0.6rem 1.2rem; font-size: 0.8rem; font-weight: bold; cursor: pointer; font-family: 'Jost', sans-serif; letter-spacing: 0.05em; transition: opacity 0.3s; width: 100%; text-align: center; }
+    .paypal-btn-placeholder:hover { opacity: 0.9; }
+
+    .bespoke-banner { background: var(--charcoal); padding: 4rem 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .bespoke-banner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; color: var(--cream); margin-bottom: 1rem; }
+    .bespoke-banner h2 em { color: var(--blush-light); font-style: italic; }
+    .bespoke-banner p { font-size: 0.85rem; color: rgba(250,246,241,0.7); line-height: 1.8; margin-bottom: 1.5rem; }
+    .btn-blush { display: inline-block; padding: 0.9rem 2.2rem; background: var(--blush); color: var(--white); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; transition: all 0.3s; border: 1px solid var(--blush); }
+    .btn-blush:hover { background: transparent; color: var(--blush-light); }
+    .bespoke-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .bespoke-feature { padding: 1.5rem; background: rgba(250,246,241,0.05); border: 1px solid rgba(250,246,241,0.1); }
+    .bespoke-feature h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 0.4rem; }
+    .bespoke-feature p { font-size: 0.78rem; color: rgba(250,246,241,0.55); line-height: 1.6; }
+
+    footer { background: var(--charcoal); color: var(--cream); padding: 4rem 6rem 2rem; border-top: 1px solid rgba(250,246,241,0.05); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; color: var(--blush-light); }
+    .footer-brand p { font-size: 0.82rem; line-height: 1.8; color: rgba(250,246,241,0.6); max-width: 260px; }
+    .footer-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500; color: var(--cream); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { font-size: 0.8rem; color: rgba(250,246,241,0.55); text-decoration: none; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--blush-light); }
+    .footer-contact p { font-size: 0.8rem; color: rgba(250,246,241,0.55); margin-bottom: 0.6rem; line-height: 1.6; }
+    .footer-contact a { color: rgba(250,246,241,0.55); text-decoration: none; transition: color 0.3s; }
+    .footer-contact a:hover { color: var(--blush-light); }
+    .footer-bottom { border-top: 1px solid rgba(250,246,241,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.72rem; color: rgba(250,246,241,0.35); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--cream); padding: 1.5rem 2rem; border-bottom: 1px solid var(--cream-dark); gap: 1.25rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .shop-notice { padding: 1.25rem 1.5rem; }
+      .shop-section { padding: 3rem 1.5rem; }
+      .products-grid { grid-template-columns: 1fr; }
+      .bespoke-banner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">LingaLonga</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-header">
+    <p class="section-label">Bespoke Wedding Decor</p>
+    <h1>Shop our <em>handcrafted</em> collection</h1>
+    <p>Every piece is made to order and personalised especially for you. Prices shown are starting from — get in touch for a custom quote.</p>
+  </div>
+
+  <div class="shop-notice">
+    <strong>💌 All items are bespoke and made to order.</strong> After purchasing, we will contact you within 24 hours to discuss your personalisation details. Please allow 7–14 days for production and delivery. For urgent orders please <a href="contact.html" style="color:var(--sage);">contact us</a> first.
+  </div>
+
+  <!-- SIGNS -->
+  <section class="shop-section">
+    <h2 class="category-title">Welcome & <em>Ceremony Signs</em></h2>
+    <p class="category-desc">Make a stunning first impression with a personalised welcome sign crafted just for your day.</p>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/featured-1.png.png" alt="Personalised wedding welcome sign" style="width:100%;height:100%;object-fit:cover;" />
+          <span class="product-badge">Bestseller</span>
+        </div>
+        <div class="product-body">
+          <h3>Personalised Welcome Sign</h3>
+          <p>Elegant wooden welcome board personalised with your names, wedding date, and message. Available in various sizes and finishes.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Bespoke</span>
+            <span class="product-detail-tag">Handpainted</span>
+            <span class="product-detail-tag">Keepsake</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €50.00<small>+ personalisation</small></div>
+            <div class="paypal-wrapper">
+              <!-- REPLACE with your PayPal button code -->
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image sage-bg">
+          <img src="images/gallery-4.png.png" alt="Reserved seating memorial sign" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-body">
+          <h3>Seating Plan Board</h3>
+          <p>Beautiful bespoke seating plan board to guide your guests to their tables in style. Fully personalised with all guest names.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Bespoke</span>
+            <span class="product-detail-tag">Custom Size</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €45.00<small>+ personalisation</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image cream-bg">
+          <img src="images/featured-3.jpeg.jpg" alt="Mr and Mrs wooden signs" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-body">
+          <h3>Table Number Signs</h3>
+          <p>Set of personalised wooden table numbers to match your wedding theme. Available in sets of 5, 10, or custom quantities.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Set of 10</span>
+            <span class="product-detail-tag">Wooden</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €20.00<small>min. order 20</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TABLE DECOR -->
+  <section class="shop-section">
+    <h2 class="category-title">Table Decor & <em>Runners</em></h2>
+    <p class="category-desc">Create a cohesive, beautiful tablescape with our personalised linen and decor pieces.</p>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/hero.png.png" alt="Personalised linen table runner" style="width:100%;height:100%;object-fit:cover;" />
+          <span class="product-badge">Popular</span>
+        </div>
+        <div class="product-body">
+          <h3>Personalised Linen Table Runner</h3>
+          <p>Luxurious personalised linen table runner embroidered or printed with your names and wedding date. Available in multiple widths.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Linen</span>
+            <span class="product-detail-tag">Personalised</span>
+            <span class="product-detail-tag">Custom Size</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €40.00<small>+ personalisation</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image sage-bg">
+          <img src="images/gallery-7.png.png" alt="Personalised wedding coasters" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-body">
+          <h3>Name Place Cards</h3>
+          <p>Elegant personalised place cards for each guest setting. Available in various styles — flat, folded, or acrylic.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Per Guest</span>
+            <span class="product-detail-tag">Custom Style</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €2.00<small>per card</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image cream-bg">
+          <img src="images/gallery-8.png.png" alt="Personalised fabric napkin" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-body">
+          <h3>Personalised Menu Cards</h3>
+          <p>Beautifully designed menu cards personalised with your chosen dishes and wedding branding. Printed on quality card stock.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Printed</span>
+            <span class="product-detail-tag">Per Guest</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €8.00<small>per card</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KEEPSAKES & FAVOURS -->
+  <section class="shop-section">
+    <h2 class="category-title">Keepsakes & <em>Favours</em></h2>
+    <p class="category-desc">The little details that make the biggest impression on your guests.</p>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/gallery-9.png.png" alt="Light up wands wedding favour" style="width:100%;height:100%;object-fit:cover;" />
+          <span class="product-badge">Bestseller</span>
+        </div>
+        <div class="product-body">
+          <h3>"Let Love Ring" Tambourines</h3>
+          <p>The guest favour everyone talks about! Personalised tambourines for your guests to ring in your celebration. Sets available.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Personalised</span>
+            <span class="product-detail-tag">Sets of 10+</span>
+            <span class="product-detail-tag">Fun!</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">€6.00<small>each</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image sage-bg">
+          <img src="images/featured-2.jpeg.jpg" alt="Cards and Wishes acrylic keepsake box" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-body">
+          <h3>Card & Wishes Box</h3>
+          <p>A cherished keepsake box for your wedding cards and well wishes. Handcrafted and personalised with your names and date.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Handcrafted</span>
+            <span class="product-detail-tag">Keepsake</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">€40.00<small>+ personalisation</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image cream-bg">
+          <img src="images/featured-4.jpeg.jpg" alt="Gold acrylic cake topper" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="product-body">
+          <h3>Personalised Cake Topper</h3>
+          <p>A beautiful finishing touch for your wedding cake. Custom wooden or acrylic toppers with your names and wedding date.</p>
+          <div class="product-details">
+            <span class="product-detail-tag">Wooden</span>
+            <span class="product-detail-tag">Acrylic</span>
+            <span class="product-detail-tag">Custom</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">From €15.00<small>+ personalisation</small></div>
+            <div class="paypal-wrapper">
+              <button class="paypal-btn-placeholder">Pay with PayPal</button>
+              <a href="contact.html" class="btn-enquire">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BESPOKE BANNER -->
+  <div class="bespoke-banner">
+    <div>
+      <h2>Can't find exactly <em>what you're looking for?</em></h2>
+      <p>Everything we make is bespoke. If you have a vision in mind — however big or small — we'd love to bring it to life for your special day. Get in touch to discuss a completely custom piece.</p>
+      <a href="contact.html" class="btn-blush">Enquire About Custom Orders</a>
+    </div>
+    <div class="bespoke-features">
+      <div class="bespoke-feature">
+        <h4>🌸 Fully Personalised</h4>
+        <p>Every detail tailored to your names, date, and wedding theme.</p>
+      </div>
+      <div class="bespoke-feature">
+        <h4>✋ Handmade</h4>
+        <p>Each piece lovingly handcrafted in our Mallorca studio.</p>
+      </div>
+      <div class="bespoke-feature">
+        <h4>📦 Ships Worldwide</h4>
+        <p>We ship across Europe and beyond for your destination wedding.</p>
+      </div>
+      <div class="bespoke-feature">
+        <h4>💬 Personal Service</h4>
+        <p>Direct communication with Nicky & Alyssa throughout your order.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">LingaLonga Art</a>
+        <p>Personalised wedding decor and signage, handcrafted with love in Mallorca, Spain.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">Welcome Signs</a></li>
+          <li><a href="shop.html">Table Runners</a></li>
+          <li><a href="shop.html">Seating Plans</a></li>
+          <li><a href="shop.html">Wooden Signs</a></li>
+          <li><a href="shop.html">Tambourines</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Get In Touch</h4>
+        <p>📍 Palma, Mallorca<br>Illes Balears, Spain</p>
+        <p>📱 <a href="https://wa.me/34620557076">+34 620 557 076</a></p>
+        <p>✉️ <a href="mailto:lingalongamallorca@gmail.com">lingalongamallorca@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LingaLonga Art. All rights reserved.</p>
+      <p>Handcrafted with love 🌸</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+</body>
+</html>

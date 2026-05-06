@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LingaLonga Art | Personalised Wedding Touches</title>
+  <meta name="description" content="Handmade Wedding Decor & Signage For Unforgettable Celebrations. Bespoke wedding stationery and decor handcrafted in Mallorca, Spain." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush: #D4847A;
+      --blush-light: #E8B4AD;
+      --blush-pale: #F5E6E4;
+      --sage: #8FAF8A;
+      --sage-light: #B8CEB5;
+      --sage-pale: #EBF0EA;
+      --cream: #FAF6F1;
+      --cream-dark: #F0E8DF;
+      --charcoal: #3D3530;
+      --charcoal-light: #6B5F5A;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 246, 241, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--cream-dark);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--blush);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--blush); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--charcoal);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 70px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 4rem 4rem 6rem;
+      position: relative;
+    }
+
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 100%;
+      background: var(--cream);
+      z-index: -1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--blush);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--charcoal-light);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: var(--blush);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: all 0.3s;
+      border: 1px solid var(--blush);
+    }
+
+    .btn-primary:hover {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      color: var(--charcoal);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border: 1px solid var(--charcoal-light);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blush);
+      color: var(--blush);
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards 0.3s;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      bottom: 2rem;
+      left: -1rem;
+      background: var(--cream);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 30px rgba(61,53,48,0.1);
+    }
+
+    .hero-image-overlay p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--charcoal);
+    }
+
+    .hero-image-overlay span {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--blush);
+      padding: 0.9rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-track span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      padding: 0 2rem;
+    }
+
+    .marquee-track span::before {
+      content: '✦';
+      margin-right: 2rem;
+      font-style: normal;
+      font-size: 0.7rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { color: var(--blush); font-style: italic; }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--cream);
+    }
+
+    .services-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover { transform: translateY(-4px); }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--blush);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: var(--charcoal-light);
+    }
+
+    /* ── FEATURED PRODUCTS ── */
+    .featured {
+      background: var(--cream-dark);
+    }
+
+    .featured-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover { transform: translateY(-6px); }
+
+    .product-image {
+      aspect-ratio: 3/4;
+      background: var(--blush-pale);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .product-card:hover .product-image img { transform: scale(1.05); }
+
+    .product-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: var(--blush-pale);
+    }
+
+    .product-info {
+      padding: 1.25rem;
+    }
+
+    .product-info h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+    }
+
+    .product-info p {
+      font-size: 0.78rem;
+      color: var(--charcoal-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .product-price {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--blush);
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--sage-pale);
+      overflow: hidden;
+    }
+
+    .about-image-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      background: var(--sage-pale);
+    }
+
+    .about-accent {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 60%;
+      aspect-ratio: 1;
+      background: var(--blush-pale);
+      z-index: -1;
+    }
+
+    .about-content {}
+
+    .about-content .section-title { margin-bottom: 1rem; }
+
+    .about-content p {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--charcoal-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+      padding: 2rem 0;
+      border-top: 1px solid var(--cream-dark);
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--blush);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      margin-top: 0.4rem;
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonials {
+      background: var(--charcoal);
+      text-align: center;
+      padding: 6rem;
+    }
+
+    .testimonials .section-label { color: var(--blush-light); }
+    .testimonials .section-title { color: var(--cream); }
+
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      max-width: 700px;
+      margin: 2rem auto 1.5rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .testimonial-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blush-light);
+    }
+
+    /* ── INSTAGRAM ── */
+    .instagram {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-top: 3rem;
+    }
+
+    .instagram-item {
+      aspect-ratio: 1;
+      background: var(--blush-pale);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .instagram-item:hover .ig-overlay { opacity: 1; }
+
+    .ig-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(212, 132, 122, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 1.5rem;
+    }
+
+    .instagram-item:nth-child(odd) { background: var(--sage-pale); }
+    .instagram-item:nth-child(3n) { background: var(--cream-dark); }
+
+    .ig-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 4rem 6rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--blush-light);
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: rgba(250,246,241,0.6);
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li { margin-bottom: 0.6rem; }
+
+    .footer-col ul li a {
+      font-size: 0.8rem;
+      color: rgba(250,246,241,0.55);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col ul li a:hover { color: var(--blush-light); }
+
+    .footer-contact p {
+      font-size: 0.8rem;
+      color: rgba(250,246,241,0.55);
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+    }
+
+    .footer-contact a {
+      color: rgba(250,246,241,0.55);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-contact a:hover { color: var(--blush-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(250,246,241,0.1);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(250,246,241,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--cream); padding: 1.5rem 2rem; border-bottom: 1px solid var(--cream-dark); gap: 1.25rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 3rem 1.5rem; }
+      .hero-image { height: 60vw; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; gap: 2px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .about { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      .about-accent { display: none; }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 1.5rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .testimonials { padding: 4rem 1.5rem; }
+      .featured-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">LingaLonga</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0; padding-top:70px;">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Personalised Wedding Touches · Mallorca, Spain</p>
+      <h1 class="hero-title">
+        Wedding Signs<br>& <em>Decor</em><br>Made with Love
+      </h1>
+      <p class="hero-subtitle">Handmade Wedding Decor & Signage For Unforgettable Celebrations. Every piece bespoke, every detail crafted to celebrate your unique love story.</p>
+      <div class="hero-buttons">
+        <a href="shop.html" class="btn-primary">Shop Now</a>
+        <a href="gallery.html" class="btn-secondary">View Gallery</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/hero.png.png" alt="Personalised Mr and Mrs table runner at a beach wedding in Mallorca" style="width:100%;height:100%;object-fit:cover;" />
+      <div class="hero-image-overlay">
+        <p>"Making your day truly unforgettable"</p>
+        <span>Bespoke · Handcrafted · Personalised</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>Welcome Signs</span>
+      <span>Table Runners</span>
+      <span>Seating Plans</span>
+      <span>Name Place Cards</span>
+      <span>Wooden Signs</span>
+      <span>Guest Books</span>
+      <span>Card Boxes</span>
+      <span>Cake Toppers</span>
+      <span>Welcome Signs</span>
+      <span>Table Runners</span>
+      <span>Seating Plans</span>
+      <span>Name Place Cards</span>
+      <span>Wooden Signs</span>
+      <span>Guest Books</span>
+      <span>Card Boxes</span>
+      <span>Cake Toppers</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-header">
+      <p class="section-label">What We Create</p>
+      <h2 class="section-title">Bespoke pieces for your <em>perfect day</em></h2>
+      <p style="font-size:0.88rem; color:var(--charcoal-light); line-height:1.8;">From modern elegance to rustic romance, every handmade piece is designed to reflect your style and celebrate your journey together.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🪧</div>
+        <h3>Welcome & Directional Signs</h3>
+        <p>Elegant entrance signs, directional arrows, and ceremony boards personalised with your names and wedding date.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌿</div>
+        <h3>Table Decor & Runners</h3>
+        <p>Personalised linen table runners, table numbers, and place settings that bring cohesion and beauty to your reception.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Seating Plans & Stationery</h3>
+        <p>Bespoke seating plans, menus, order of service, and name cards — all designed to match your theme perfectly.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎁</div>
+        <h3>Card & Gift Boxes</h3>
+        <p>Cherished moments boxes and card holders, handcrafted to keep your precious cards and gifts safe in style.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪵</div>
+        <h3>Personalised Wooden Signs</h3>
+        <p>Custom wooden signage including table numbers, bar signs, and keepsake pieces to treasure long after the day.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎶</div>
+        <h3>Guest Tambourines & Favours</h3>
+        <p>"Let Love Ring" guest tambourines and personalised wedding favours that get the party started beautifully.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured">
+    <div class="featured-header">
+      <div>
+        <p class="section-label">From The Shop</p>
+        <h2 class="section-title">Featured <em>pieces</em></h2>
+      </div>
+      <a href="shop.html" class="btn-secondary">View All Products</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/featured-1.png.png" alt="Personalised pet welcome sign for wedding" />
+        </div>
+        <div class="product-info">
+          <h4>Personalised Welcome Sign</h4>
+          <p>Bespoke welcome boards for your big day</p>
+          <span class="product-price">From €50.00</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/featured-2.jpeg.jpg" alt="Cards and Wishes acrylic box" />
+        </div>
+        <div class="product-info">
+          <h4>Cards & Wishes Box</h4>
+          <p>Cherished moments keepsake box</p>
+          <span class="product-price">€40.00</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/hero.png.png" alt="Personalised Mr and Mrs linen table runner" />
+        </div>
+        <div class="product-info">
+          <h4>Personalised Table Runner</h4>
+          <p>Personalised wedding table linen</p>
+          <span class="product-price">From €40.00</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="images/featured-4.jpeg.jpg" alt="Fucking Finally gold acrylic cake topper" />
+        </div>
+        <div class="product-info">
+          <h4>Personalised Cake Topper</h4>
+          <p>Gold acrylic bespoke cake toppers</p>
+          <span class="product-price">From €15.00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SNIPPET -->
+  <section class="about">
+    <div class="about-image">
+      <div class="about-image-main">
+        <img src="images/featured-3.jpeg.jpg" alt="Handcrafted Mr and Mrs wooden signs by LingaLonga Art" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-content">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">A mother & daughter <em>passion project</em></h2>
+      <p>At LingaLonga Art, we believe that your wedding should be as unique and memorable as your love story. As a mother and daughter team, Nicky and Alyssa, we pour creativity, care, and a touch of magic into every piece of bespoke wedding decor and personalised signage we craft.</p>
+      <p>What began as a shared passion for capturing special moments has grown into a dedication to helping couples create celebrations infused with personality and beauty.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Handmade</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">Bespoke</div>
+          <div class="stat-label">Every Piece</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">💙</div>
+          <div class="stat-label">Made with Love</div>
+        </div>
+      </div>
+      <a href="about.html" class="btn-primary">Our Full Story</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonials">
+    <p class="section-label">Kind Words</p>
+    <h2 class="section-title" style="color:var(--cream);">What our couples <em style="color:var(--blush-light);">say</em></h2>
+    <blockquote class="testimonial-quote">
+      "LingaLonga Art made our wedding day so incredibly special. Every single detail was perfect — the welcome sign, the table runners, the tambourines. Our guests are still talking about them!"
+    </blockquote>
+    <p class="testimonial-author">— Sofia & James, Mallorca 2024</p>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="instagram">
+    <p class="section-label">Follow Along</p>
+    <h2 class="section-title">Find us on <em>Instagram</em></h2>
+    <p style="font-size:0.85rem; color:var(--charcoal-light);">@lingalongaart · Daily inspiration from our studio in Mallorca</p>
+    <div class="instagram-grid">
+      <div class="instagram-item"><img src="images/gallery-6.png.png" alt="Bucket list wedding sign" style="width:100%;height:100%;object-fit:cover;" /><div class="ig-overlay">♡</div></div>
+      <div class="instagram-item"><img src="images/gallery-9.png.png" alt="Light up wands wedding favour" style="width:100%;height:100%;object-fit:cover;" /><div class="ig-overlay">♡</div></div>
+      <div class="instagram-item"><img src="images/gallery-1.png.png" alt="Message in a bottle wedding" style="width:100%;height:100%;object-fit:cover;" /><div class="ig-overlay">♡</div></div>
+      <div class="instagram-item"><img src="images/gallery-7.png.png" alt="Personalised wedding coasters" style="width:100%;height:100%;object-fit:cover;" /><div class="ig-overlay">♡</div></div>
+      <div class="instagram-item"><img src="images/gallery-3.png.png" alt="QR code photo sharing sign" style="width:100%;height:100%;object-fit:cover;" /><div class="ig-overlay">♡</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">LingaLonga Art</a>
+        <p>Personalised wedding decor and signage, handcrafted with love in Mallorca, Spain. Making your day truly unforgettable.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">Welcome Signs</a></li>
+          <li><a href="shop.html">Table Runners</a></li>
+          <li><a href="shop.html">Seating Plans</a></li>
+          <li><a href="shop.html">Wooden Signs</a></li>
+          <li><a href="shop.html">Tambourines</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Get In Touch</h4>
+        <p>📍 Palma, Mallorca<br>Illes Balears, Spain</p>
+        <p>📱 <a href="https://wa.me/34620557076">WhatsApp: +34 620 557 076</a></p>
+        <p>✉️ <a href="mailto:lingalongamallorca@gmail.com">lingalongamallorca@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LingaLonga Art. All rights reserved. Palma, Mallorca.</p>
+      <p>Handcrafted with love 🌸</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+
+</body>
+</html>
